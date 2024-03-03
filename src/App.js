@@ -6,6 +6,7 @@ function Square({value, onSquareClick}) {
   )
 }
 
+//board is top level component
 export default function Board() {
   // state the keeps track if X is the next move
   const [xIsNext, setXIsNext] = useState(true)
@@ -36,7 +37,7 @@ export default function Board() {
   }
 
   return (<>
-    <div className="status">{status}</div>
+    <h3 className="status">{status}</h3>
     <div className="board-row">
       <Square value={squares[0]} onSquareClick={() => {handleClick(0)}}/>
       <Square value={squares[1]} onSquareClick={() => {handleClick(1)}}/>
