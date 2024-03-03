@@ -7,24 +7,25 @@ function Square({value, onSquareClick}) {
 }
 
 //board is top level component
-export default function Board() {
-  // state the keeps track if X is the next move
-  const [xIsNext, setXIsNext] = useState(true)
-  const [squares, setSquares] = useState(Array(9).fill(null)) // creating 9 square states with default value 'null'
+function Board({xIsNext, squares, onPlay}) {
+  
+  // const [squares, setSquares] = useState(Array(9).fill(null)) // creating 9 square states with default value 'null'
 
   function handleClick(i) {
-    const nextSquares = squares.slice() // making a copy of the squares array to update this current square
     if(squares[i] || calculateWinner(squares)) { // if there is a val in this square OR if there is a winner (if one is not null don't do anything with this click)
       return
     }
+
+    const nextSquares = squares.slice() // making a copy of the squares array to update this current square
     if (xIsNext) {
       nextSquares[i] = 'X'
     } else {
       nextSquares[i] = 'O'
     }
     
-    setSquares(nextSquares) // setting the state by setting it equal to the updated copy of the squares array
-    setXIsNext(!xIsNext)
+    onPlay(nextSquares) // to update the board when the user clicks the squrae
+    // setSquares(nextSquares) // setting the state by setting it equal to the updated copy of the squares array
+    // setXIsNext(!xIsNext)
   }
 
   // keeping track of winner or next player
@@ -58,6 +59,30 @@ export default function Board() {
   </>)
 }
 
+
+export default function Game() {
+  // state the keeps track if X is the next move
+  const [xIsNext, setXIsNext] = useState(true)
+  const [history, setHistory] = useState([Array(9).fill(null)])
+  const currentSquares = history[history.length - 1] // most current board state
+
+  function handlePlay(nextSquares) {
+    setHistory([...history, nextSquares]) // creates a new array with the new squares appended to the end
+    setXIsNext(!xIsNext)
+  }
+
+  return(
+    <div className="game">
+      <div className="game-board">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
+      </div>
+      <div className="game-info">
+        <ol>{/*TODO*/}</ol>
+      </div>
+    </div>
+  )
+}
+
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
@@ -67,7 +92,7 @@ function calculateWinner(squares) {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
