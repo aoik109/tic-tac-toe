@@ -62,14 +62,49 @@ function Board({xIsNext, squares, onPlay}) {
 
 export default function Game() {
   // state the keeps track if X is the next move
-  const [xIsNext, setXIsNext] = useState(true)
-  const [history, setHistory] = useState([Array(9).fill(null)])
-  const currentSquares = history[history.length - 1] // most current board state
+  // const [xIsNext, setXIsNext] = useState(true)
+  
+  const [history, setHistory] = useState([Array(9).fill(null)]) // add the starter board state (empty squares)
+  const [currentMove, setCurrentMove] = useState(0); // the step the user is currently viewing
+  const xIsNext = currentMove % 2 === 0 // if the current move is divisible by 2 (0,2,4), X is the next player
+  const currentSquares = history[currentMove] // most current board state, final part in removing the past moves if we jumpTo
 
   function handlePlay(nextSquares) {
-    setHistory([...history, nextSquares]) // creates a new array with the new squares appended to the end
-    setXIsNext(!xIsNext)
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
+    // setHistory([...history, nextSquares]) // creates a new array with the new squares appended to the end
+    // setXIsNext(!xIsNext)
   }
+
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
+    // setXIsNext(nextMove % 2 === 0);
+
+    // setHistory(history.slice(0, nextMove+1))
+    
+    // if (nextMove % 2 === 0) {
+    //   setXIsNext(false)
+    // } else {
+    //   setXIsNext(true)
+    // }
+  }
+
+  // for each move currently in history, we check the move number and return a button with the functionality of going back in time
+  const moves = history.map((squares, move)=>{ // squares is each element of history, move is the INDEX of the move saved in history
+    let description;
+    if (move > 0) {
+      description = `Go to move #${move}`
+    } else {
+      description = `Go to game start`
+    }
+
+    return (
+      <li key={move}>
+        <button onClick={()=>jumpTo(move)}>{description}</button>
+      </li>
+    )
+  })
 
   return(
     <div className="game">
@@ -77,7 +112,7 @@ export default function Game() {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className="game-info">
-        <ol>{/*TODO*/}</ol>
+        <ol>{moves}</ol>
       </div>
     </div>
   )
