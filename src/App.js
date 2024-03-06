@@ -72,10 +72,17 @@ export default function Game() {
   }
 
   function jumpTo(nextMove) {
-    //TODO
+    setHistory(history.slice(0, nextMove+1))
+    
+    if (nextMove % 2 === 0) {
+      setXIsNext(false)
+    } else {
+      setXIsNext(true)
+    }
   }
 
-  const moves = history.map((squares, move)=>{ // move is the INDEX of the move saved in history
+  // for each move currently in history, we check the move number and return a button with the functionality of going back in time
+  const moves = history.map((squares, move)=>{ // squares is each element of history, move is the INDEX of the move saved in history
     let description;
     if (move > 0) {
       description = `Go to move #${move}`
