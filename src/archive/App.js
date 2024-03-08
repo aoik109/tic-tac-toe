@@ -1,3 +1,4 @@
+// Tutorial Version of the Tic Tac Toe game
 import { useState } from 'react'
 
 function Square({value, onSquareClick}) {
