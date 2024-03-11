@@ -1,0 +1,7 @@
+.board-container {
+    display: grid;
+    width: 240px;
+    border: solid white 5px;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+}

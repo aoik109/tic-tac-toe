@@ -1,11 +1,11 @@
 // Game : he top level component for the Tic-Tac-Toe game
 
 // Child components
-import Square from './Square.js'
+import Board from './Board.js'
 
 const Game = () => {
     return (
-        <Square value="X"></Square>
+        <Board className="board"></Board>
     )
 }
 

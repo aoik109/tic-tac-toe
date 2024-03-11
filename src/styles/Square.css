@@ -4,7 +4,7 @@ button.square {
     align-self: center;
     width: 80px;
     height: 80px;
-    border: solid white 5px; /*inner borders will be 20px TODO: add 5px to outer border in BOARD*/
+    border: solid white 2px; /*inner borders will be 20px TODO: add 5px to outer border in BOARD*/
     background-color: black;
     color: white;
     text-align: center;

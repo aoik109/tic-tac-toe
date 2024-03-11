@@ -2,6 +2,8 @@
 
 import './styles/Square.css'
 
+// TODO: event listener for onClick
+
 const Square = ({value}) => {
     return (
         <>
