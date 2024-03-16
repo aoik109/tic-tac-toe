@@ -3,6 +3,8 @@
 import Square from './Square'
 import './styles/Board.css'
 
+// TODO: a state = the current state of the board (an array of each Square with value X, O, or null (empty))
+
 const Board = () => {
 
     return(
