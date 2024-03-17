@@ -7,8 +7,8 @@ import './styles/Square.css'
 const Square = ({value}) => {
     return (
         <>
-            <button className="square"> 
-                {value}
+            <button className="square-container"> 
+                <h3 className="square-value">{value}</h3>
             </button>
         </>
     )

@@ -7,8 +7,8 @@ import Player from './Player'
 const Status = () => {
     return (
         <div className="status-container">
-            <Player className="player" playerName="1"/>
-            <Player className="player" playerName="2"/>
+            <Player className="player" playerName="X"/>
+            <Player className="player" playerName="O"/>
         </div>
     )
 }
