@@ -2,3 +2,10 @@
     border: solid black 3px;
     padding: 5px;
 }
+
+/* Responsiveness */
+@media (max-width: 980px) {
+    .board-and-history-container {
+        flex-direction: column;
+    }
+}

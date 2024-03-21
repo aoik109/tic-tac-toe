@@ -5,7 +5,7 @@ import './styles/Player.css'
 const Player = ({playerName}) => {
     return (
         <div className="player-container">
-            <h1>Player {playerName}</h1>
+            <h3>Player {playerName}</h3>
         </div>
     )
 }

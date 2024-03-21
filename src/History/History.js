@@ -2,12 +2,16 @@
 
 import Turn from './Turn'
 
+import './History.css'
+
 const History = () => {
     return (
-        <>
-            <h2>Game History</h2>
-            <Turn/>
-        </>
+        <div className="history-container">
+            <h4>Game History</h4>
+            <div className="turn-container">
+                <Turn/>
+            </div>
+        </div>
     )
 }
 

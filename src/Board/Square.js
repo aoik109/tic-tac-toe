@@ -8,7 +8,7 @@ const Square = ({value}) => {
     return (
         <>
             <button className="square-container"> 
-                <h3 className="square-value">{value}</h3>
+                <h4 className="square-value">{value}</h4>
             </button>
         </>
     )
